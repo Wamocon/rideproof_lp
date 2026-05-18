@@ -1,0 +1,401 @@
+﻿<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rideproof - Digitaler Fahrrad-Schutz und Eigentumsnachweis</title>
+  <meta name="description" content="Registriere dein Fahrrad kostenlos mit rideproof. Eigentumsnachweis erstellen, Diebstahlschutz-Dokument exportieren und im Schadensfall sofort reagieren.">
+  <meta name="keywords" content="fahrrad registrieren, eigentumsnachweis fahrrad, diebstahlschutz fahrrad, e-bike registrierung, fahrrad nachweis app">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="rideproof">
+  <meta name="theme-color" content="#0d9488">
+  <link rel="icon" href="app-icon-light.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://rideproof.vercel.app/">
+
+  <meta property="og:title" content="rideproof - Dein Fahrrad. Dein Nachweis. Dein Schutz.">
+  <meta property="og:description" content="Kostenlos, ohne Pflicht-Login und DSGVO-konform: Registriere dein Rad und erstelle einen professionellen Eigentumsnachweis.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="rideproof">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="rideproof - Digitaler Fahrrad-Schutz">
+  <meta name="twitter:description" content="Kein Pflicht-Account, keine Pflicht-Cloud. Fahrrad registrieren und Eigentumsnachweis in Sekunden erstellen.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "rideproof",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Web",
+    "description": "Digitale Fahrrad-Registrierung und Eigentumsnachweiserstellung",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR", "description": "Kostenlos nutzbar"},
+    "author": {"@type": "Organization", "name": "WAMOCON GmbH"}
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Ist rideproof kostenlos?", "acceptedAnswer": {"@type": "Answer", "text": "Ja, die Kernfunktionen sind kostenlos nutzbar."}},
+      {"@type": "Question", "name": "Muss ich ein Konto erstellen?", "acceptedAnswer": {"@type": "Answer", "text": "Nein. Die Basis-Registrierung ist ohne Login möglich."}},
+      {"@type": "Question", "name": "Wo werden meine Daten gespeichert?", "acceptedAnswer": {"@type": "Answer", "text": "Standardmäßig lokal in deinem Browser. Optionales Cloud-Backup verfügbar."}},
+      {"@type": "Question", "name": "Funktioniert das auch für E-Bikes?", "acceptedAnswer": {"@type": "Answer", "text": "Ja, rideproof unterstützt alle Fahrrad- und E-Bike-Typen."}}
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    :root {
+      --color-bg: #f5f5f7;
+      --color-bg-alt: #eeeef0;
+      --color-surface: #ffffff;
+      --color-border: rgba(0,0,0,.08);
+      --color-border-hover: rgba(0,0,0,.14);
+      --color-border-accent: rgba(13,148,136,.18);
+      --color-accent: #0d9488;
+      --color-accent-dim: #0b7a71;
+      --color-accent-soft: rgba(13,148,136,.06);
+      --color-theme-color: #0d9488;
+      --color-text-main: #111113;
+      --color-muted: #555558;
+      --color-faint: #8e8e93;
+      --font-sans: 'Inter', system-ui, sans-serif;
+    }
+    body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text-main); }
+  </style>
+</head>
+
+<body class="overflow-x-hidden antialiased leading-relaxed">
+  <div class="gradient-orbs" aria-hidden="true">
+    <div class="orb orb--1"></div>
+    <div class="orb orb--2"></div>
+    <div class="orb orb--3"></div>
+  </div>
+
+  <div class="fixed top-0 left-0 right-0 z-[60] overflow-hidden" style="height:48px;background:#0a0a0c;border-bottom:1px solid rgba(13,148,136,.25);">
+    <div style="display:flex;align-items:center;height:100%;white-space:nowrap;animation:ticker-scroll 18s linear infinite;">
+      <span class="ticker-item">RIDEPROOF &mdash; Schütze dein Rad. Digital. Sicher. Nachweisbar.</span>
+      <span class="ticker-item">RIDEPROOF &mdash; Schütze dein Rad. Digital. Sicher. Nachweisbar.</span>
+      <span class="ticker-item">RIDEPROOF &mdash; Schütze dein Rad. Digital. Sicher. Nachweisbar.</span>
+      <span class="ticker-item">RIDEPROOF &mdash; Schütze dein Rad. Digital. Sicher. Nachweisbar.</span>
+    </div>
+  </div>
+
+  <nav class="fixed top-[48px] left-0 right-0 z-50 h-16 flex items-center transition-all duration-400" id="nav">
+    <div class="w-full max-w-[1100px] mx-auto px-5 md:px-10 flex items-center justify-between">
+      <a href="#" class="hover:opacity-70 transition-opacity flex items-center gap-2" style="text-decoration:none;">
+        <img src="app-icon-light.svg" alt="rideproof Icon" style="width:28px;height:28px;">
+        <span style="font-size:1.5rem;font-weight:900;letter-spacing:-0.5px;color:#0d9488;">rideproof</span>
+      </a>
+      <div class="hidden md:flex items-center gap-4">
+        <div class="nav-links-pill">
+          <a href="#problem" class="nav-link" data-nav-section="problem">Problem</a>
+          <a href="#warum" class="nav-link" data-nav-section="warum">Lösung</a>
+          <a href="#funktionen" class="nav-link" data-nav-section="funktionen">Funktionen</a>
+          <a href="#process" class="nav-link" data-nav-section="process">Prozess</a>
+          <a href="#ablauf" class="nav-link" data-nav-section="ablauf">So geht's</a>
+          <a href="#faq" class="nav-link" data-nav-section="faq">FAQ</a>
+        </div>
+        <a href="https://rideproof.vercel.app" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;background:#0d9488;color:#fff;font-size:.8rem;font-weight:700;border-radius:999px;text-decoration:none;">Zur App</a>
+        <div class="flex items-center gap-2 text-sm font-semibold" style="color:var(--color-muted);background:rgba(255,255,255,0.05);padding:6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,0.1);">
+          <a href="index.html" style="color:#0d9488;text-decoration:none;">DE</a>
+          <span style="opacity:0.3">|</span>
+          <a href="index.en.html" class="hover:text-white transition-colors" style="text-decoration:none;">EN</a>
+        </div>
+      </div>
+      <button class="nav-hamburger md:hidden" id="navHamburger" aria-label="Menü"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" aria-hidden="true">
+    <button style="position:absolute;top:18px;right:18px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;" onclick="closeMobileMenu()">&times;</button>
+    <div class="mm-brand">rideproof</div>
+    <div class="mm-grid">
+      <a href="#problem" class="mm-link" onclick="closeMobileMenu()">Problem</a>
+      <a href="#warum" class="mm-link" onclick="closeMobileMenu()">Lösung</a>
+      <a href="#funktionen" class="mm-link" onclick="closeMobileMenu()">Funktionen</a>
+      <a href="#process" class="mm-link" onclick="closeMobileMenu()">Prozess</a>
+      <a href="#ablauf" class="mm-link" onclick="closeMobileMenu()">So geht's</a>
+      <a href="#faq" class="mm-link" onclick="closeMobileMenu()">FAQ</a>
+      <a href="#final-cta" class="mm-link" onclick="closeMobileMenu()">Zur App</a>
+    </div>
+    <div style="margin-top:2rem;display:flex;justify-content:center;gap:1.5rem;font-size:1.2rem;font-weight:700;">
+      <a href="index.html" style="color:#0d9488;text-decoration:none;">DE</a>
+      <span style="color:var(--color-border);">|</span>
+      <a href="index.en.html" style="color:var(--color-muted);text-decoration:none;">EN</a>
+    </div>
+  </div>
+
+  <section class="relative flex items-center justify-center overflow-hidden pt-[160px] pb-[130px]" id="hero">
+    <canvas id="heroParticles" class="absolute inset-0 z-[1]"></canvas>
+    <div class="absolute inset-0 z-0" style="background:radial-gradient(ellipse 70% 55% at 50% 40%,rgba(13,148,136,.09)0%,transparent 65%),radial-gradient(ellipse 50% 60% at 20% 80%,rgba(13,148,136,.05)0%,transparent 50%),radial-gradient(ellipse 45% 50% at 80% 25%,rgba(95,127,116,.07)0%,transparent 50%);"></div>
+    <div class="absolute inset-0 z-0 opacity-[.06]" style="background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 60% 55% at 50% 50%,black 0%,transparent 70%);"></div>
+
+    <div class="relative z-10 text-center max-w-[960px] px-5">
+      <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full mb-7" style="background:rgba(13,148,136,.12);border:1px solid rgba(13,148,136,.35);">
+        <img src="app-icon-light.svg" alt="rideproof" style="width:16px;height:16px;">
+        <span style="font-size:.8rem;font-weight:700;color:#14b8a6;letter-spacing:.06em;text-transform:uppercase;">Ohne Pflicht-Login. Kostenlos. DSGVO-konform.</span>
+      </div>
+
+      <h1 class="reveal text-3xl md:text-7xl lg:text-8xl font-bold leading-[1.08] tracking-tight mb-6">
+        Dein Fahrrad.<br><span class="gradient-text">Dein Nachweis. Dein Schutz.</span>
+      </h1>
+      <p class="reveal text-lg md:text-xl max-w-[680px] mx-auto leading-relaxed" style="color:var(--color-muted);">
+        rideproof hilft Fahrrad- und E-Bike-Besitzern, ihr Eigentum digital zu registrieren, professionelle Eigentumsnachweise zu erstellen und im Diebstahlfall sofort handlungsfähig zu sein.
+      </p>
+
+      <div class="reveal mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="https://rideproof.vercel.app" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 30px;background:#0d9488;color:#fff;font-size:.95rem;font-weight:700;border-radius:12px;text-decoration:none;transition:all .25s ease;box-shadow:0 4px 24px rgba(13,148,136,.3);">Zur App öffnen</a>
+      </div>
+
+      <p class="reveal mt-5 text-sm" style="color:#8e8e93;">DSGVO-konform. Export als PDF. Teilen per Link.</p>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-[120px] z-20" style="background:linear-gradient(to bottom, transparent, #0f1117);"></div>
+  </section>
+
+  <section class="relative section-dark" id="problem" style="padding:6.5rem 0 5rem;margin-top:-2px;">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <h2 class="reveal text-4xl md:text-6xl font-black leading-[1.05] tracking-tight mb-6" style="color:#f0f0f2;">
+        Jährlich werden in Deutschland über eine Million<br><span style="color:#0d9488;">Räder gestohlen</span>
+      </h2>
+      <p class="reveal text-lg max-w-[620px] leading-relaxed mb-16" style="color:#9a9aaa;">Diese drei Kennzahlen zeigen, warum digitale Dokumentation für jeden Fahrrad- und E-Bike-Besitzer essenziell ist.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="reveal text-center p-8 rounded-2xl" style="background:rgba(13,148,136,.07);border:1px solid rgba(13,148,136,.25);">
+          <span class="block stat-value font-black leading-none mb-3 tabular-nums" style="color:#0d9488;" data-target="1400000" data-separator=".">0</span>
+          <span class="block text-lg font-semibold mb-1" style="color:#f0f0f2;">Fahrraddiebstähle pro Jahr in Deutschland</span>
+          <span class="block text-xs" style="color:#7a7a88;">zeigt den Handlungsbedarf und die Dringlichkeit der Absicherung</span>
+        </div>
+        <div class="reveal text-center p-8 rounded-2xl" style="background:rgba(13,148,136,.07);border:1px solid rgba(13,148,136,.25);">
+          <span class="block stat-value font-black leading-none mb-3 tabular-nums" style="color:#0d9488;" data-target="28" data-suffix="%">0</span>
+          <span class="block text-lg font-semibold mb-1" style="color:#f0f0f2;">Aufklärungsquote bei Fahrraddiebstahl</span>
+          <span class="block text-xs" style="color:#7a7a88;">ohne Dokumentation kaum Chancen auf Erstattung</span>
+        </div>
+        <div class="reveal text-center p-8 rounded-2xl" style="background:rgba(13,148,136,.07);border:1px solid rgba(13,148,136,.25);">
+          <span class="block stat-value font-black leading-none mb-3 tabular-nums" style="color:#0d9488;" data-prefix="bis " data-target="2500" data-separator="." data-suffix=" EUR">0</span>
+          <span class="block text-lg font-semibold mb-1" style="color:#f0f0f2;">Zeitwert eines modernen E-Bikes</span>
+          <span class="block text-xs" style="color:#7a7a88;">ein Diebstahl ohne Nachweis bedeutet oft vollständiger Verlust</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 md:py-32 section-dark" id="warum" style="background:#050508;">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-14">
+        <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Warum rideproof</h2>
+        <p class="reveal text-lg max-w-[650px] mx-auto leading-relaxed" style="color:#9999a1;">Vier klare Vorteile für alle, die ihr Fahrrad oder E-Bike zuverlässig schützen und dokumentieren wollen.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="reveal p-7 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);">
+          <h3 class="text-xl font-bold mb-3" style="color:#f0f0f2;">Sofortiger Eigentumsnachweis</h3>
+          <p style="color:#9a9aaa;">Vollständige Fahrrad-Registrierung mit Rahmennummer, Fotos und Details – jederzeit abrufbar und teilbar.</p>
+        </div>
+        <div class="reveal p-7 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);">
+          <h3 class="text-xl font-bold mb-3" style="color:#f0f0f2;">Im Diebstahlfall sofort reagieren</h3>
+          <p style="color:#9a9aaa;">Alle Daten für die Polizeimeldung und Versicherung in wenigen Sekunden exportierbar.</p>
+        </div>
+        <div class="reveal p-7 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);">
+          <h3 class="text-xl font-bold mb-3" style="color:#f0f0f2;">Schadensdokumentation leicht gemacht</h3>
+          <p style="color:#9a9aaa;">Beschädigungen strukturiert erfassen – für Versicherungsansprüche oder Reparaturdokumentationen.</p>
+        </div>
+        <div class="reveal p-7 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);">
+          <h3 class="text-xl font-bold mb-3" style="color:#f0f0f2;">Privacy-first ohne Pflicht-Cloud</h3>
+          <p style="color:#9a9aaa;">Standardmäßig lokal gespeichert, optionales Cloud-Backup. Keine Pflichtregistrierung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="funktionen" class="py-24 section-alt">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-14">
+        <h2 class="reveal text-3xl md:text-5xl font-bold tracking-tight mb-4">Kernfunktionen, die euch schützen</h2>
+        <p class="reveal text-lg max-w-[680px] mx-auto" style="color:var(--color-muted);">Alle wichtigen Schutz- und Dokumentationsfunktionen in einer klaren, alltagstauglichen Oberfläche.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <article class="reveal p-7 rounded-2xl bg-white border card-hover accent-hover">
+          <h3 class="text-xl font-bold mb-3">Fahrrad-Registrierung</h3>
+          <p style="color:var(--color-muted);">Marke, Modell, Rahmennummer, Kaufdatum und Kaufpreis strukturiert erfassen.</p>
+        </article>
+        <article class="reveal p-7 rounded-2xl bg-white border card-hover accent-hover">
+          <h3 class="text-xl font-bold mb-3">Foto-Dokumentation</h3>
+          <p style="color:var(--color-muted);">Mehrere Bilder pro Rad – Gesamtansicht, Details und Seriennummer als Bildnachweis.</p>
+        </article>
+        <article class="reveal p-7 rounded-2xl bg-white border card-hover accent-hover">
+          <h3 class="text-xl font-bold mb-3">Eigentumsnachweis-Export</h3>
+          <p style="color:var(--color-muted);">Professionelles PDF-Dokument für Polizei, Versicherung oder beim Weiterverkauf.</p>
+        </article>
+        <article class="reveal p-7 rounded-2xl bg-white border card-hover accent-hover">
+          <h3 class="text-xl font-bold mb-3">Diebstahl-Meldungspaket</h3>
+          <p style="color:var(--color-muted);">Alle relevanten Daten auf einen Klick als vollständiges Report-Paket bereitgestellt.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 section-dark" id="process" style="background:#090a0e;">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-10">
+        <h2 class="reveal text-3xl md:text-5xl font-bold tracking-tight mb-4" style="color:#f0f0f2;">Hauptprozess als Schutzfluss</h2>
+        <p class="reveal text-lg max-w-[760px] mx-auto" style="color:#a2a2ab;">Das Ziel von rideproof: aus Unsicherheit einen klaren, teilbaren Eigentumsnachweis machen. Der Ablauf zeigt den realen Weg vom ersten Eintrag bis zur sicheren Reaktion.</p>
+      </div>
+      <div class="reveal process-shell" id="processFlow">
+        <div class="process-track">
+          <div class="process-track__bar" id="processFlowBar"></div>
+          <div class="process-track__dot" id="processFlowDot"></div>
+        </div>
+        <div class="process-grid">
+          <article class="process-step process-step--active" tabindex="0">
+            <div class="process-step__index">01</div>
+            <h3 class="process-step__title">Rad registrieren</h3>
+            <p class="process-step__text">Grunddaten, Rahmennummer und Fotos in wenigen Minuten einpflegen.</p>
+            <p class="process-step__hint">Zum Aufklappen klicken</p>
+            <div class="process-step__more">Startet ohne Registrierung – direkt mit den echten Fahrraddaten loslegen.</div>
+          </article>
+          <article class="process-step" tabindex="0">
+            <div class="process-step__index">02</div>
+            <h3 class="process-step__title">Nachweis erstellen</h3>
+            <p class="process-step__text">Automatisch einen professionellen Eigentumsnachweis als PDF generieren.</p>
+            <p class="process-step__hint">Zum Aufklappen klicken</p>
+            <div class="process-step__more">Das Dokument enthält alle relevanten Daten, Fotos und die Rahmennummer – gerichtsverwertbar.</div>
+          </article>
+          <article class="process-step" tabindex="0">
+            <div class="process-step__index">03</div>
+            <h3 class="process-step__title">Sichern und teilen</h3>
+            <p class="process-step__text">Export als PDF, Teilen per Link oder optional Backup in der Cloud.</p>
+            <p class="process-step__hint">Zum Aufklappen klicken</p>
+            <div class="process-step__more">Ergebnis: Ein verlässlicher Nachweis, der sofort bei Polizei oder Versicherung vorgelegt werden kann.</div>
+          </article>
+          <article class="process-step" tabindex="0">
+            <div class="process-step__index">04</div>
+            <h3 class="process-step__title">Im Schadensfall reagieren</h3>
+            <p class="process-step__text">Alle Daten sofort griffbereit für Polizei und Versicherung – in Sekunden abrufbar.</p>
+            <p class="process-step__hint">Zum Aufklappen klicken</p>
+            <div class="process-step__more">Ein strukturiertes Meldungspaket erhöht die Chancen auf Erstattung erheblich.</div>
+          </article>
+        </div>
+        <p class="process-target"><strong>Ziel:</strong> Mehr Sicherheit, weniger Verlustrisiko und ein klarer Eigentumsnachweis für jedes Rad.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 section-dark" style="background:#0f1117;" id="ablauf">
+    <div class="max-w-[1000px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-12">
+        <h2 class="reveal text-3xl md:text-5xl font-bold tracking-tight mb-4" style="color:#f0f0f2;">So funktioniert es in 3 Schritten</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="reveal p-7 rounded-2xl" style="background:rgba(13,148,136,.08);border:1px solid rgba(13,148,136,.25);">
+          <span class="text-sm font-bold uppercase tracking-wider" style="color:#14b8a6;">Schritt 1</span>
+          <h3 class="text-xl font-bold mt-2 mb-2" style="color:#f0f0f2;">Fahrrad anlegen</h3>
+          <p style="color:#9a9aaa;">Seriennummer, Fotos und Kaufdaten erfassen, damit du eine verlässliche Datenbasis hast.</p>
+        </div>
+        <div class="reveal p-7 rounded-2xl" style="background:rgba(13,148,136,.08);border:1px solid rgba(13,148,136,.25);">
+          <span class="text-sm font-bold uppercase tracking-wider" style="color:#14b8a6;">Schritt 2</span>
+          <h3 class="text-xl font-bold mt-2 mb-2" style="color:#f0f0f2;">Nachweis generieren</h3>
+          <p style="color:#9a9aaa;">Automatisch ein offizielles Schutzdokument erstellen lassen – in weniger als einer Minute.</p>
+        </div>
+        <div class="reveal p-7 rounded-2xl" style="background:rgba(13,148,136,.08);border:1px solid rgba(13,148,136,.25);">
+          <span class="text-sm font-bold uppercase tracking-wider" style="color:#14b8a6;">Schritt 3</span>
+          <h3 class="text-xl font-bold mt-2 mb-2" style="color:#f0f0f2;">Sicher aufbewahren</h3>
+          <p style="color:#9a9aaa;">Als PDF exportieren oder in der Cloud sichern und im Schadensfall sofort abrufen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24" id="faq">
+    <div class="max-w-[900px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-10">
+        <h2 class="reveal text-3xl md:text-5xl font-bold tracking-tight mb-4">Häufige Fragen</h2>
+      </div>
+      <div id="faqList" class="rounded-2xl bg-white border overflow-hidden">
+        <div class="faq-item">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between">
+            <span class="font-semibold">Ist rideproof kostenlos?</span>
+            <span class="faq-question__icon relative w-5 h-5"></span>
+          </button>
+          <div class="faq-answer px-6 pb-5" style="color:var(--color-muted);">Ja, die Kernfunktionen sind kostenlos nutzbar.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between">
+            <span class="font-semibold">Muss ich ein Konto erstellen?</span>
+            <span class="faq-question__icon relative w-5 h-5"></span>
+          </button>
+          <div class="faq-answer px-6 pb-5" style="color:var(--color-muted);">Nein. Die Basis-Registrierung ist ohne Login möglich.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between">
+            <span class="font-semibold">Wo werden meine Daten gespeichert?</span>
+            <span class="faq-question__icon relative w-5 h-5"></span>
+          </button>
+          <div class="faq-answer px-6 pb-5" style="color:var(--color-muted);">Standardmäßig lokal in deinem Browser. Optionales Cloud-Backup verfügbar.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between">
+            <span class="font-semibold">Funktioniert das auch für E-Bikes?</span>
+            <span class="faq-question__icon relative w-5 h-5"></span>
+          </button>
+          <div class="faq-answer px-6 pb-5" style="color:var(--color-muted);">Ja, rideproof unterstützt alle Fahrrad- und E-Bike-Typen.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 section-dark" id="final-cta" style="background:#050508;">
+    <div class="max-w-[900px] mx-auto px-5 md:px-10 text-center">
+      <h2 class="reveal text-3xl md:text-5xl font-black leading-[1.1] mb-5" style="color:#f0f0f2;">Registriere dein Rad jetzt und schütze dein Eigentum digital.</h2>
+      <p class="reveal text-lg max-w-[620px] mx-auto mb-9" style="color:#9a9aaa;">Kostenlos, direkt nutzbar und auf das Wesentliche reduziert.</p>
+      <div class="reveal flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="https://rideproof.vercel.app" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;padding:14px 30px;background:#0d9488;color:#fff;font-weight:700;border-radius:12px;text-decoration:none;">Jetzt Fahrrad registrieren</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#050508;color:#8e8e93;padding:32px 20px 40px;text-align:center;border-top:1px solid rgba(255,255,255,.08);">
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <img src="app-icon-light.svg" alt="rideproof" style="width:18px;height:18px;opacity:.85;">
+      <span style="font-weight:700;color:#f0f0f2;">rideproof</span>
+    </div>
+    <p style="font-size:.9rem;">Digitaler Fahrrad-Schutz und Eigentumsnachweis.</p>
+    <div style="margin-top:12px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:.85rem;">
+      <a href="https://rideproof.vercel.app" target="_blank" rel="noopener noreferrer" style="color:#81d4ca;text-decoration:none;">App öffnen</a>
+      <a href="impressum.html" style="color:#81d4ca;text-decoration:none;">Impressum</a>
+      <a href="agb.html" style="color:#81d4ca;text-decoration:none;">AGB</a>
+      <a href="datenschutz.html" style="color:#81d4ca;text-decoration:none;">Datenschutz</a>
+    </div>
+  </footer>
+
+  <button id="backToTop" class="back-to-top" aria-label="Nach oben">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie-Hinweis">
+    <div class="cookie-banner__inner">
+      <h3 style="font-weight:700;font-size:1.05rem;margin-bottom:.45rem;">Hinweis zu lokalem Speicher</h3>
+      <p style="font-size:.92rem;line-height:1.6;color:#4d4d55;">rideproof nutzt lokalen Browser-Speicher, damit deine Fahrraddaten erhalten bleiben. Es gibt keine Pflicht-Cloud und keinen Werbe-Tracker im Planungsflow.</p>
+      <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:1rem;flex-wrap:wrap;">
+        <button class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-action="reject">Schließen</button>
+        <button class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-action="accept">Verstanden</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
